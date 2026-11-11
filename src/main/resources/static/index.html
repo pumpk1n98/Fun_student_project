@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7fb">
+  <title>Студенты — Учебный журнал</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Учебный журнал">
+        <span class="brand-mark">У</span>
+        <span>учебный журнал</span>
+      </a>
+      <div id="account" class="account" hidden>
+        <span id="user-email"></span>
+        <button id="logout-button" class="button button-quiet" type="button">Выйти</button>
+      </div>
+    </header>
+
+    <section id="login-view" class="login-layout">
+      <div class="intro">
+        <p class="eyebrow">ПРОСТОЙ УЧЁТ · ПОНЯТНЫЙ ПРОГРЕСС</p>
+        <h1>Все студенты<br>в одном месте.</h1>
+        <p class="intro-copy">Войдите, чтобы просматривать список студентов и управлять контактами.</p>
+        <div class="intro-note"><span class="status-dot"></span> Ваш учебный кабинет</div>
+      </div>
+      <form id="login-form" class="card login-card">
+        <div class="card-heading">
+          <span class="icon-badge">↗</span>
+          <div>
+            <h2>С возвращением</h2>
+            <p>Войдите в свою учётную запись</p>
+          </div>
+        </div>
+        <label for="email">Электронная почта</label>
+        <input id="email" name="email" type="email" placeholder="name@example.com" autocomplete="username" required>
+        <label for="password">Пароль</label>
+        <input id="password" name="password" type="password" placeholder="Введите пароль" autocomplete="current-password" required>
+        <p id="login-error" class="message error" role="alert" hidden></p>
+        <button class="button button-primary full-width" type="submit">Войти в кабинет <span aria-hidden="true">→</span></button>
+        <p class="demo-hint">Для знакомства: <code>admin@example.com</code> · <code>admin</code></p>
+      </form>
+    </section>
+
+    <section id="students-view" hidden>
+      <div class="dashboard-heading">
+        <div>
+          <p class="eyebrow">ВАША ГРУППА</p>
+          <h1>Студенты</h1>
+          <p class="intro-copy">Список студентов и их контактная информация.</p>
+        </div>
+        <button id="add-button" class="button button-primary" type="button" hidden><span aria-hidden="true">＋</span> Добавить студента</button>
+      </div>
+
+      <div class="toolbar card">
+        <div class="student-count"><span id="student-count">0</span><span>всего студентов</span></div>
+        <label class="search-box">
+          <span aria-hidden="true">⌕</span>
+          <input id="search" type="search" placeholder="Поиск по имени">
+        </label>
+      </div>
+
+      <p id="list-message" class="message" role="status" hidden></p>
+      <div class="table-wrap card">
+        <table>
+          <thead><tr><th>СТУДЕНТ</th><th>ПОЧТА</th><th>ТЕЛЕФОН</th><th id="actions-heading" hidden>ДЕЙСТВИЯ</th></tr></thead>
+          <tbody id="student-rows"></tbody>
+        </table>
+        <div id="empty-state" class="empty-state" hidden>
+          <span class="empty-icon">◎</span>
+          <strong>Студенты не найдены</strong>
+          <span>Попробуйте изменить поисковый запрос.</span>
+        </div>
+      </div>
+      <p class="footer-note">Информация обновляется из учебной базы.</p>
+    </section>
+  </main>
+
+  <dialog id="student-dialog" class="student-dialog">
+    <form id="student-form" method="dialog">
+      <div class="dialog-heading">
+        <div><p class="eyebrow">УЧЕБНЫЙ ЖУРНАЛ</p><h2 id="dialog-title">Новый студент</h2></div>
+        <button id="close-dialog" class="close-button" type="button" aria-label="Закрыть">×</button>
+      </div>
+      <input id="student-id" type="hidden">
+      <label for="student-name">Имя</label>
+      <input id="student-name" name="name" required>
+      <label for="student-surname">Фамилия</label>
+      <input id="student-surname" name="surname" required>
+      <label for="student-email">Электронная почта</label>
+      <input id="student-email" name="email" type="email">
+      <label for="student-phone">Телефон</label>
+      <input id="student-phone" name="phoneNumber" type="tel">
+      <p id="form-error" class="message error" role="alert" hidden></p>
+      <div class="dialog-actions">
+        <button id="cancel-dialog" class="button button-quiet" type="button">Отмена</button>
+        <button class="button button-primary" type="submit">Сохранить</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>
